@@ -6,7 +6,7 @@ export default function Ledger() {
     return (
         <>
         <div>
-            Subtotal: ${}
+            
         </div>
         <div>
             <label>Max Budget: $<input type="number" defaultValue={150}/></label>
