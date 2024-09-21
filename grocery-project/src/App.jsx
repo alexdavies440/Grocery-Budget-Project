@@ -5,6 +5,7 @@ import './App.css';
 import Banner from './components/Banner';
 import GroceryList from './components/GroceryList';
 import groceryData from './components/groceryData';
+import Ledger from './components/Ledger';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -13,6 +14,7 @@ function App() {
     <div>
       <Banner />
       <GroceryList />
+      <Ledger />
     </div>
       /* <div>
         <a href="https://vitejs.dev" target="_blank">
