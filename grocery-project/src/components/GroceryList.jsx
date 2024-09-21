@@ -14,7 +14,9 @@ return (
             
             return (
                 <ul>
-                    <input key={id} type="checkbox" onChange={handleChange}/> ${items.price} - {items.name}
+                    <label>
+                        <button>+</button> ${items.price} - {items.name}
+                    </label>
                 </ul>
             );
         })}
