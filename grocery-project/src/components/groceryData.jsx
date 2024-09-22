@@ -7,8 +7,8 @@
 //     }
 // }
 
-const bTaxable = 6.391;
-const cTaxable = 9.679;
+const bTaxable = 6.391/100; // Food items taxed at lower rate
+const cTaxable = 9.679/100; // Non food items subject to regular sales tax
 
 
 const groceryData = [

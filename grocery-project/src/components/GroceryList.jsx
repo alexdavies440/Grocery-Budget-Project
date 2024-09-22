@@ -3,17 +3,30 @@ import Ledger from "./Ledger";
 import { useState } from "react";
 
 
+
 export default function GroceryList () {
     
     const [subtotal, setSubtotal] = useState(0);
+    const [total, setTotal] = useState(0);
     const [cart, setCart] = useState([]);
     function addItem(item) {
             setSubtotal(subtotal + item.price);
+            setTotal(total + item.price + (item.price * item.taxRate))
             setCart(cart => [...cart, `${item.name} - ${item.price}`]);
-            console.log(cart);
+        
     
     }
     
+//     function removeItem(index) {
+//         setCart(cart.splice(index));
+//         //setSubtotal(subtotal - item.price);
+//         // setCart(cart => [...cart, `${item.name} - ${item.price}`]);
+
+// }
+    // const removeItem = (index, item) => {
+    //     setCart(cart => cart.splice(index));
+    //     setSubtotal(subtotal - item.price);
+    // }
     return (
         <div>
             <h3>Pick your groceries: </h3>
@@ -22,6 +35,7 @@ export default function GroceryList () {
                 return (
                     <ul>
                         <label key={id}>
+                        
                             <button id="addButton" onClick={() => addItem(items)}>+</button> ${items.price} - {items.name}
                         </label>
                     </ul>
@@ -35,7 +49,8 @@ export default function GroceryList () {
                     <div>
                         <ul>
                             <li key={id}>
-                            <button >-</button> {line} 
+                                <span>{id}</span>
+                            <button>-</button> {line} 
                             </li>
                         </ul>
                     </div>
@@ -44,7 +59,7 @@ export default function GroceryList () {
             })}
             </div>
             <div>Subtotal: ${subtotal}</div>
-            
+            <div>Total: ${total}</div>
            </div>
            );
         }
