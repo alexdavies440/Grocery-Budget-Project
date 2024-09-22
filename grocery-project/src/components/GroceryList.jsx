@@ -1,5 +1,5 @@
 import groceryData from "./groceryData";
-import Ledger from "./Ledger";
+import ListButtons from "./ListButtons"
 import { useState } from "react";
 
 
@@ -12,7 +12,7 @@ export default function GroceryList () {
     function addItem(item) {
             setSubtotal(subtotal + item.price);
             setTotal(total + item.price + (item.price * item.taxRate))
-            setCart(cart => [...cart, `${item.name} - ${item.price}`]);
+            setCart(cart => [...cart, ` $${item.price} - ${item.name}`]);
         
     
     }
@@ -35,8 +35,7 @@ export default function GroceryList () {
                 return (
                     <ul>
                         <label key={id}>
-                        
-                            <button id="addButton" onClick={() => addItem(items)}>+</button> ${items.price} - {items.name}
+                            <button id="addButton" onClick={() => addItem(items)}>Add</button> ${items.price} - {items.name}
                         </label>
                     </ul>
                 );
@@ -49,8 +48,7 @@ export default function GroceryList () {
                     <div>
                         <ul>
                             <li key={id}>
-                                <span>{id}</span>
-                            <button>-</button> {line} 
+                            <button>Remove</button> {line} 
                             </li>
                         </ul>
                     </div>
