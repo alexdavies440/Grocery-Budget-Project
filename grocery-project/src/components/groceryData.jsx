@@ -18,7 +18,7 @@ const groceryData = [
     {id: 4, name: "Blackberries", price: 2.29, category: "Fruit", taxRate: bTaxable},
     {id: 5, name: "Red Grapes", price: 4.30, category: "Fruit",taxRate: bTaxable},
     {id: 6, name: "Bag of Yellow Onions", price: 3.19, category: "Vegetables", taxRate: bTaxable},
-    {id: 7, name: "Sweet Potatoe Bag", price: 2.55, category: "Vegetables", taxRate: bTaxable},
+    {id: 7, name: "Sweet Potato Bag", price: 2.55, category: "Vegetables", taxRate: bTaxable},
     {id: 8, name: "Russet Potato Bag", price: 4.65, category: "Vegetables", taxRate: bTaxable},
     {id: 9, name: "Oat Bran Bread", price: 2.19, category: "Dry Goods", taxRate: bTaxable},
     {id: 10, name: "Keto Bread", price: 3.99, category: "Dry Goods", taxRate: bTaxable},
