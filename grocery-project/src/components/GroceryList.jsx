@@ -30,14 +30,16 @@ export default function GroceryList () {
                 
                 return (
                     <ul>
-                        <label key={id}>
+                        <label key={id}><input type="checkbox"  /><input type="number" name="quantity" defaultValue={1} size={1}/> ${items.price} - {items.name} </label>
+                        
+                        {/* <label key={id}>
                             <button id="addButton" onClick={() => addItem(items)}>Add</button> ${items.price} - {items.name}
-                        </label>
+                        </label> */}
                     </ul>
                 );
             })}
             
-            <div>Cart:</div>
+            
             <div>
                 {cart.map((lineItem, id) => {
                 return (
@@ -56,7 +58,7 @@ export default function GroceryList () {
             <div id="total">Total: ${Math.round(total * 100)/100}</div>
             <div>
             <label>
-                Max Budget: $<input type="number" id="max" defaultValue={15}/>
+                Max Budget: $<input type="number" id="max" defaultValue={150} size={3}/>
             </label>
             </div>
            </div>
