@@ -6,7 +6,7 @@ import { useReducer } from "react";
 
 export default function GroceryList () {
     
-    // const [subtotal, setSubtotal] = useState(0);
+    const [subtotal, setSubtotal] = useState(0);
     const [total, setTotal] = useState(0);
     const [checked, setChecked] = useState(
         new Array(groceryData.length).fill(false)
@@ -18,7 +18,7 @@ export default function GroceryList () {
         );
         setChecked(updatedCheckedStatus);
 
-        const totalPrice = updatedCheckedStatus.reduce(
+        const calculatedSubtotal = updatedCheckedStatus.reduce(
             (sum, currentState, index) => {
                 if (currentState === true) {
                     return sum + groceryData[index].price;
@@ -26,7 +26,17 @@ export default function GroceryList () {
                 return sum;
             }, 0
         );
-        setTotal(totalPrice);
+        setSubtotal(calculatedSubtotal);
+
+        const calculatedTotal = updatedCheckedStatus.reduce(
+            (sum, currentState, index) => {
+                if (currentState === true) {
+                    return sum + groceryData[index].price + (groceryData[index].price * groceryData[index].taxRate);
+                }
+                return sum;
+            }, 0
+        );
+        setTotal(calculatedTotal)
     }
     return (
         <div>
@@ -40,7 +50,7 @@ export default function GroceryList () {
                 );
             })}
        
-            {/* <div>Subtotal: ${Math.round(subtotal * 100)/100}</div> */}
+            <div>Subtotal: ${Math.round(subtotal * 100)/100}</div>
             <div>Total: ${Math.round(total * 100)/100}</div>
             <div>
             <label> {console.log(checked)}
