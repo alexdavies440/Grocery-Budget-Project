@@ -1,5 +1,4 @@
 import groceryData from "./groceryData";
-import ListButtons from "./ListButtons"
 import { useState } from "react";
 
 
@@ -17,12 +16,9 @@ export default function GroceryList () {
     
     }
     
-//     function removeItem(index) {
-//         setCart(cart.splice(index));
-//         //setSubtotal(subtotal - item.price);
-//         // setCart(cart => [...cart, `${item.name} - ${item.price}`]);
-
-// }
+    function removeItem() {
+       
+}
     // const removeItem = (index, item) => {
     //     setCart(cart => cart.splice(index));
     //     setSubtotal(subtotal - item.price);
@@ -43,12 +39,12 @@ export default function GroceryList () {
             
             <div>Cart:</div>
             <div>
-                {cart.map((line, id) => {
+                {cart.map((lineItem, id) => {
                 return (
                     <div>
                         <ul>
                             <li key={id}>
-                            <button>Remove</button> {line} 
+                            <button onClick={removeItem(lineItem)}>Remove</button> {lineItem} 
                             </li>
                         </ul>
                     </div>
@@ -56,8 +52,13 @@ export default function GroceryList () {
                 );
             })}
             </div>
-            <div>Subtotal: ${subtotal}</div>
-            <div>Total: ${total}</div>
+            <div>Subtotal: ${Math.round(subtotal * 100)/100}</div>
+            <div id="total">Total: ${Math.round(total * 100)/100}</div>
+            <div>
+            <label>
+                Max Budget: $<input type="number" id="max" defaultValue={15}/>
+            </label>
+            </div>
            </div>
            );
         }
