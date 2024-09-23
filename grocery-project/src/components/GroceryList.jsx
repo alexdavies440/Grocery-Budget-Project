@@ -1,13 +1,23 @@
 import groceryData from "./groceryData";
 import { useState } from "react";
 import { useReducer } from "react";
+import { useId } from "react";
 
 
 
 export default function GroceryList () {
-    
+
     const [subtotal, setSubtotal] = useState(0);
     const [total, setTotal] = useState(0);
+
+    const [quantity, setQuantity] = useState(
+        new Array(groceryData.length).fill(1)
+    );
+
+    function handleQuantity() {
+    
+    }
+    /////////////////////////////////////////////////////
     const [checked, setChecked] = useState(
         new Array(groceryData.length).fill(false)
       );
@@ -34,27 +44,34 @@ export default function GroceryList () {
                     return sum + groceryData[index].price + (groceryData[index].price * groceryData[index].taxRate);
                 }
                 return sum;
-            }, 0
+            }
         );
-        setTotal(calculatedTotal)
+        setTotal(calculatedTotal);
     }
+
     return (
         <div>
             <h3>Pick your groceries: </h3>
+            
             {groceryData.map((item, id) => {
                 
                 return (
                     <ul key={id}>
-                        <label ><input type="checkbox" checked={checked[id]} onChange={() => handleChange(id)} name="checkbox" id={id} /><input type="number" name="quantity" defaultValue={1} size={1}/> ${item.price} - {item.name} </label>
+                        <label ><input type="checkbox" checked={checked[id]} onChange={() => handleChange(id)} id={id} /></label>
+                        <label><input name="count" quantity={quantity[id]} type="number" onChange={(id) => handleQuantity(id)} defaultValue={1} size={1}/> ${item.price} - {item.name} </label>
+                        
                     </ul>
                 );
             })}
        
             <div>Subtotal: ${Math.round(subtotal * 100)/100}</div>
             <div>Total: ${Math.round(total * 100)/100}</div>
+            
             <div>
-            <label> {console.log(checked)}
+            <label> {console.log(quantity)} 
+                
                 Max Budget: $<input type="number" id="max" defaultValue={150} size={3}/>
+                
             </label>
             </div>
            </div>
