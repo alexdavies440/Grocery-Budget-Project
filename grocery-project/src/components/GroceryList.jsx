@@ -9,13 +9,15 @@ export default function GroceryList () {
 
     const [subtotal, setSubtotal] = useState(0);
     const [total, setTotal] = useState(0);
-
+    const [groceryList, setGroceryList] = useState([]);
     const [quantity, setQuantity] = useState(
-        new Array(groceryData.length).fill(1)
+        new Array(groceryData.length).fill(0)
     );
 
-    function handleQuantity() {
-    
+    function handleQuantity(e) {
+        
+        quantity.splice(e.target.id -1, 1, e.target.value);
+        handleChange(e.target.id);
     }
     /////////////////////////////////////////////////////
     const [checked, setChecked] = useState(
@@ -31,7 +33,7 @@ export default function GroceryList () {
         const calculatedSubtotal = updatedCheckedStatus.reduce(
             (sum, currentState, index) => {
                 if (currentState === true) {
-                    return sum + groceryData[index].price;
+                    return sum + (groceryData[index].price * quantity[index]);
                 }
                 return sum;
             }, 0
