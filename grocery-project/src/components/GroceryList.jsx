@@ -25,12 +25,11 @@ export default function GroceryList () {
         
         if (!currentCart.includes(groceryData[id])) {
             currentCart.push(groceryData[id]);
-            //subtotal += groceryData[id].price;
+            groceryData[id].quantity = 1;
         }
         else if (currentCart.includes(groceryData[id])) {
             currentCart.splice(currentCart.indexOf(groceryData[id]), 1);
-            //subtotal -= groceryData[id].price;
-        }
+            groceryData[id].quantity = 0;        }
 
         getSubtotal;
        //console.log(sum);
@@ -48,7 +47,7 @@ export default function GroceryList () {
                 return (
                     <ul key={id}>
                         <label ><input type="checkbox" onChange={() =>handleChange(id)} id={id} /></label>
-                        <label><input name="count" type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
+                        <label><input name="count" type="number" defaultValue={item.quantity} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
                 );
