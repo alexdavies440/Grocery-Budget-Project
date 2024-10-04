@@ -8,10 +8,6 @@ import groceryData from './components/groceryData';
 import Ledger from './components/Ledger';
 
 function App() {
-  // const [subtotal, setSubtotal] = useState(0);
-
- //const addItem = (item) => setSubtotal(subtotal + item.price);
- 
   
   return (
     <div>

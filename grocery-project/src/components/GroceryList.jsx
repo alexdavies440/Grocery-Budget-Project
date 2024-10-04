@@ -15,33 +15,33 @@ export default function GroceryList () {
    
     /////////////////////////////////////////////////////
    
-    function handleChange(itemId) {
-
-        if (!currentCart.includes(groceryData[itemId])) {
-            currentCart.push(groceryData[itemId]);
+    function handleChange(item, id) {
+        
+        if (!currentCart.includes(groceryData[id])) {
+            currentCart.push(groceryData[id]);
         }
-        else if (currentCart.includes(groceryData[itemId])){
-            currentCart.splice(groceryData[itemId], 1);
+        else if (currentCart.includes(groceryData[id])) {
+            currentCart.splice(currentCart.indexOf(item), 1);
         }
-       
-        setCart(currentCart); 
+       console.log(currentCart);
     }
 
-    console.log(cart);
+    //console.log(cart);
     return (
         <div>
-            <h3>Pick your groceries: </h3>
             
             {groceryData.map((item, id) => {
                 
                 return (
                     <ul key={id}>
-                        <label ><input type="checkbox" onChange={() =>handleChange(id)} id={id} /></label>
+                        <label ><input type="checkbox" onChange={() =>handleChange(item, id)} id={id} /></label>
                         <label><input name="count" type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
                 );
             })}
+
+            <div>Cart: </div>
        
             {/* <div>Subtotal: ${Math.round(subtotal * 100)/100}</div>
             <div>Total: ${Math.round(total * 100)/100}</div> */}
