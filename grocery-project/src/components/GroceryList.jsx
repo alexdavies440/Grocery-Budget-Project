@@ -15,13 +15,13 @@ export default function GroceryList () {
    
     /////////////////////////////////////////////////////
    
-    function handleChange(item, id) {
+    function handleChange(id) {
         
         if (!currentCart.includes(groceryData[id])) {
             currentCart.push(groceryData[id]);
         }
         else if (currentCart.includes(groceryData[id])) {
-            currentCart.splice(currentCart.indexOf(item), 1);
+            currentCart.splice(currentCart.indexOf(groceryData[id]), 1);
         }
        console.log(currentCart);
     }
@@ -34,7 +34,7 @@ export default function GroceryList () {
                 
                 return (
                     <ul key={id}>
-                        <label ><input type="checkbox" onChange={() =>handleChange(item, id)} id={id} /></label>
+                        <label ><input type="checkbox" onChange={() =>handleChange(id)} id={id} /></label>
                         <label><input name="count" type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
