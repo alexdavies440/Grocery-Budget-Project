@@ -7,7 +7,7 @@ import { useId } from "react";
 
 export default function GroceryList () {
     const currentCart = [];
-    //let subtotal = 0;
+    let sum;
     
     
     const [subtotal, setSubtotal] = useState(0);
@@ -26,16 +26,18 @@ export default function GroceryList () {
             //subtotal -= groceryData[id].price;
         }
 
-        let sum = 0;
+        getSubtotal;
+       //console.log(sum);
+       console.log(currentCart);
+    }
+    
+    function getSubtotal() {
+        sum = 0;
         for (let i = 0; i < currentCart.length; i++) {
             sum += currentCart[i].price;
         }
-        setSubtotal(sum);
-       console.log(currentCart);
-       console.log(sum);
-
+        return sum;
     }
-   
     
     return (
         <div>
@@ -53,7 +55,7 @@ export default function GroceryList () {
 
             <div>Cart: </div>
        
-            <div>Subtotal: ${subtotal}</div>
+            <div>Subtotal: ${getSubtotal}</div>
             {/* <div>Total: ${Math.round(total * 100)/100}</div> */}
             
             <div>
