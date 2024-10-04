@@ -13,7 +13,6 @@ function App() {
     <div>
       <Banner />
       <GroceryList />
-      
     </div>
       
   );

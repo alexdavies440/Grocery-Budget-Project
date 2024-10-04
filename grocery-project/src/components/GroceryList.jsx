@@ -13,7 +13,13 @@ export default function GroceryList () {
     const [subtotal, setSubtotal] = useState(0);
     // const [total, setTotal] = useState(0);
     // const [cart, setCart] = useState([]);
-    
+    function getSubtotal() {
+        sum = 0;
+        for (let i = 0; i < currentCart.length; i++) {
+            sum += currentCart[i].price;
+        }
+        return sum;
+    }
     
     function handleChange(id) {
         
@@ -29,15 +35,10 @@ export default function GroceryList () {
         getSubtotal;
        //console.log(sum);
        console.log(currentCart);
+       console.log(getSubtotal())
     }
     
-    function getSubtotal() {
-        sum = 0;
-        for (let i = 0; i < currentCart.length; i++) {
-            sum += currentCart[i].price;
-        }
-        return sum;
-    }
+
     
     return (
         <div>
@@ -55,7 +56,7 @@ export default function GroceryList () {
 
             <div>Cart: </div>
        
-            <div>Subtotal: ${getSubtotal}</div>
+            <div>Subtotal: ${getSubtotal()}</div>
             {/* <div>Total: ${Math.round(total * 100)/100}</div> */}
             
             <div>
