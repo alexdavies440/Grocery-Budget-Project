@@ -7,9 +7,10 @@ import { useId } from "react";
 
 export default function GroceryList () {
     const currentCart = [];
-    let subtotal = 0;
+    //let subtotal = 0;
     
-    // const [subtotal, setSubtotal] = useState(0);
+    
+    const [subtotal, setSubtotal] = useState(0);
     // const [total, setTotal] = useState(0);
     // const [cart, setCart] = useState([]);
     
@@ -18,24 +19,24 @@ export default function GroceryList () {
         
         if (!currentCart.includes(groceryData[id])) {
             currentCart.push(groceryData[id]);
-            subtotal += groceryData[id].price;
+            //subtotal += groceryData[id].price;
         }
         else if (currentCart.includes(groceryData[id])) {
             currentCart.splice(currentCart.indexOf(groceryData[id]), 1);
-            subtotal -= groceryData[id].price;
+            //subtotal -= groceryData[id].price;
         }
 
         let sum = 0;
         for (let i = 0; i < currentCart.length; i++) {
             sum += currentCart[i].price;
         }
-        
+        setSubtotal(sum);
        console.log(currentCart);
-       console.log(subtotal);
+       console.log(sum);
 
     }
    
-    //console.log(cart);
+    
     return (
         <div>
             
@@ -66,4 +67,3 @@ export default function GroceryList () {
            </div>
            );
         }
-
