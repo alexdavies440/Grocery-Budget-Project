@@ -7,25 +7,34 @@ import { useId } from "react";
 
 export default function GroceryList () {
     const currentCart = [];
-    const [subtotal, setSubtotal] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [cart, setCart] = useState([]);
+    let subtotal = 0;
     
-
-   
-    /////////////////////////////////////////////////////
-   
+    // const [subtotal, setSubtotal] = useState(0);
+    // const [total, setTotal] = useState(0);
+    // const [cart, setCart] = useState([]);
+    
+    
     function handleChange(id) {
         
         if (!currentCart.includes(groceryData[id])) {
             currentCart.push(groceryData[id]);
+            subtotal += groceryData[id].price;
         }
         else if (currentCart.includes(groceryData[id])) {
             currentCart.splice(currentCart.indexOf(groceryData[id]), 1);
+            subtotal -= groceryData[id].price;
         }
-       console.log(currentCart);
-    }
 
+        let sum = 0;
+        for (let i = 0; i < currentCart.length; i++) {
+            sum += currentCart[i].price;
+        }
+        
+       console.log(currentCart);
+       console.log(subtotal);
+
+    }
+   
     //console.log(cart);
     return (
         <div>
@@ -43,8 +52,8 @@ export default function GroceryList () {
 
             <div>Cart: </div>
        
-            {/* <div>Subtotal: ${Math.round(subtotal * 100)/100}</div>
-            <div>Total: ${Math.round(total * 100)/100}</div> */}
+            <div>Subtotal: ${subtotal}</div>
+            {/* <div>Total: ${Math.round(total * 100)/100}</div> */}
             
             <div>
                 
