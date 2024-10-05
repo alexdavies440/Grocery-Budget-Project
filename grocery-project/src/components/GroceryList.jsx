@@ -1,67 +1,92 @@
 import groceryData from "./groceryData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useReducer } from "react";
 import { useId } from "react";
 
 
 
+
 export default function GroceryList () {
-    const currentCart = [];
+    const list = [...groceryData];
+    const checkedItems = [];
     let sum;
-    let subtotal;
-    //const [count, setCount] = useState(0)
+    //let subtotal;
+    const [count, setCount] = useState(0)
     //const [subtotal, setSubtotal] = useState(0);
+    
     // const [total, setTotal] = useState(0);
     // const [cart, setCart] = useState([]);
+    
+    
+    function selectItems(i) {
+        if (!checkedItems.includes(groceryData[i])) {
+            checkedItems.push(groceryData[i]);
+            
+        }
+        else if (checkedItems.includes(groceryData[i])) {
+            checkedItems.splice(checkedItems.indexOf(groceryData[i]), 1);
+        }
+        return checkedItems;
+    }
+
     function getSubtotal(arr) {
         sum = 0;
         for (let i = 0; i < arr.length; i++) {
-            arr[i].quantity = 1;
+            //arr[i].quantity = 1;
             sum += arr[i].price * arr[i].quantity;
         }
         return sum;
     }
-    
-    function handleChange(index) {
-        
-        if (!currentCart.includes(groceryData[index])) {
-            currentCart.push(groceryData[index]);
-            //currentCart[idex].quantity = 1;
 
+    function updateQuantity(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            arr[i].quantity = 1;
         }
-        else if (currentCart.includes(groceryData[index])) {
-            currentCart.splice(currentCart.indexOf(groceryData[index]), 1);
-            //currentCart[idex].quantity = 0;
-        }
-        
-        getSubtotal(currentCart);
-       //console.log(sum);
-       subtotal = getSubtotal(currentCart);
-       console.log(currentCart);
-       console.log(subtotal);
+    }
+
+    // function displayCount(i) {
+    //     if (checkedItems[i].quantity !== groceryData[i].quantity) {
+    //         return checkedItems[i].quantity;
+    //     } else {
+    //         return 0;
+    //     }
+    // }
+
+    function handleChange(index) {
+
+        selectItems(index);
+
+        updateQuantity(checkedItems);
+
+        getSubtotal(checkedItems);
+
+        console.log(checkedItems);
        
+        console.log(sum);
+        
+    
+       //console.log(subtotal);
     }
     
-
+    
     
     return (
         <div>
             
-            {groceryData.map((item, id) => {
+            {list.map((item, id) => {
                 
                 return (
                     <ul key={id}>
                         <label ><input type="checkbox" onChange={() =>handleChange(id)} id={id} /></label>
-                        <label><input name="count" type="number" defaultValue={groceryData[id].quantity} size={1}/> ${item.price} - {item.name}</label>
+                        <label><input name="itemCount" onChange={(e) => groceryData[id].quantity = e.target.value} type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
                     
                 );
             })}
 
-            <div>Cart: {}</div>
+            <div>Subtotal: {}</div>
        
-            <div>Subtotal: ${subtotal}</div>
             {/* <div>Total: ${Math.round(total * 100)/100}</div> */}
             
             <div>
