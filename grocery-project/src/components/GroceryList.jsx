@@ -9,13 +9,11 @@ import { useId } from "react";
 export default function GroceryList () {
     const list = [...groceryData];
     
-    
-    //let subtotal;
     const [count, setCount] = useState(0)
     const [subtotal, setSubtotal] = useState(0);
     const checkedItems = [];
 
-
+    
     function selectItems(i) {
         if (!checkedItems.includes(groceryData[i])) {
             checkedItems.push(groceryData[i]);
@@ -35,40 +33,45 @@ export default function GroceryList () {
         return Math.round(sum * 100)/100;
     }
 
-    
-
     function updateQuantity(arr) {
         for (let i = 0; i < arr.length; i++) {
             arr[i].quantity = 1;
         }
     }
+    
 
     function handleChange(index) {
+       
 
         selectItems(index);
 
         
-
-        //setSubtotal(getSubtotal(checkedItems))
-        
-        //setCart(checkedItems);
         updateQuantity(checkedItems);
         
         console.log(checkedItems);
         //console.log(cart);       
         console.log(getSubtotal(checkedItems));
+
+        //setSubtotal(getSubtotal(checkedItems));
+
+        console.log(subtotal);
         
     }
+    
+    useEffect(() => {
+        setSubtotal(getSubtotal(checkedItems));
+        
+      }, [checkedItems]);
     
     return (
         <div>
             
-            {list.map((item, id) => {
+            {groceryData.map((item, id) => {
                 
                 return (
                     <ul key={id}>
                         <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                        <label><input name="itemCount" onChange={(e) => groceryData[id].quantity = e.target.value} type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
+                        <label><input name="itemCount" type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
                     
