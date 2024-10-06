@@ -1,14 +1,31 @@
+import React, { useEffect, useState } from "react";
 import GroceryList from "./GroceryList";
 
 export default function Ledger() {
-    //let total = 0;
+    const [checked, setChecked] = useState("no"); 
+    useEffect(() => {
+        document.title = `Checked: ${checked}`;
+        return () => {
+          document.title = "";
+        }
+      });
+    function handleChange() {
+        if (checked == "no") {
+            setChecked("yes");
+        } else {
+            setChecked("no");
+        }
+
+        
+    }
+    
     
    
     return (
         <>
         <div>Subtotal: </div>
         <div>
-            <label>Max Budget: $<input type="number" defaultValue={150}/></label>
+            <label>Checked: <input type="checkbox" onChange={() => handleChange()} defaultValue={"no"}/>{checked}</label>
         </div>
         </>
         

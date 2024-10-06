@@ -8,16 +8,14 @@ import { useId } from "react";
 
 export default function GroceryList () {
     const list = [...groceryData];
-    const checkedItems = [];
-    let sum;
+    
+    
     //let subtotal;
     const [count, setCount] = useState(0)
-    //const [subtotal, setSubtotal] = useState(0);
-    
-    // const [total, setTotal] = useState(0);
-    // const [cart, setCart] = useState([]);
-    
-    
+    const [subtotal, setSubtotal] = useState(0);
+    const checkedItems = [];
+
+
     function selectItems(i) {
         if (!checkedItems.includes(groceryData[i])) {
             checkedItems.push(groceryData[i]);
@@ -30,13 +28,14 @@ export default function GroceryList () {
     }
 
     function getSubtotal(arr) {
-        sum = 0;
+        let sum = 0;
         for (let i = 0; i < arr.length; i++) {
-            //arr[i].quantity = 1;
             sum += arr[i].price * arr[i].quantity;
         }
-        return sum;
+        return Math.round(sum * 100)/100;
     }
+
+    
 
     function updateQuantity(arr) {
         for (let i = 0; i < arr.length; i++) {
@@ -44,31 +43,22 @@ export default function GroceryList () {
         }
     }
 
-    // function displayCount(i) {
-    //     if (checkedItems[i].quantity !== groceryData[i].quantity) {
-    //         return checkedItems[i].quantity;
-    //     } else {
-    //         return 0;
-    //     }
-    // }
-
     function handleChange(index) {
 
         selectItems(index);
 
-        updateQuantity(checkedItems);
-
-        getSubtotal(checkedItems);
-
-        console.log(checkedItems);
-       
-        console.log(sum);
         
-    
-       //console.log(subtotal);
+
+        //setSubtotal(getSubtotal(checkedItems))
+        
+        //setCart(checkedItems);
+        updateQuantity(checkedItems);
+        
+        console.log(checkedItems);
+        //console.log(cart);       
+        console.log(getSubtotal(checkedItems));
+        
     }
-    
-    
     
     return (
         <div>
@@ -77,7 +67,7 @@ export default function GroceryList () {
                 
                 return (
                     <ul key={id}>
-                        <label ><input type="checkbox" onChange={() =>handleChange(id)} id={id} /></label>
+                        <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
                         <label><input name="itemCount" onChange={(e) => groceryData[id].quantity = e.target.value} type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
@@ -85,7 +75,7 @@ export default function GroceryList () {
                 );
             })}
 
-            <div>Subtotal: {}</div>
+            <div id="subtotal">Subtotal: {subtotal}</div>
        
             {/* <div>Total: ${Math.round(total * 100)/100}</div> */}
             
