@@ -37,6 +37,25 @@ export default function GroceryList () {
         num > (budget)? isOverBudget(true) : isOverBudget(false);  
     }
 
+    // May change number input to this instead
+    const generateOptions = () => {
+        return (
+            <select onChange={(e) => item.qty = (e.target.value)}>
+                <option id="0">0</option>
+            <option value ="1">1</option>
+            <option value ="2">2</option>
+            <option value ="3">3</option>
+            <option value ="4">4</option>
+            <option value ="5">5</option>
+            <option value ="6">6</option>
+            <option value ="7">7</option>
+            <option value ="8">8</option>
+            <option value ="9">9</option>
+            <option value ="10">9</option>
+            </select>
+            
+        );
+    }
     // Everything inside here happens when a box is checked
     function handleChange(i) {
 
@@ -45,15 +64,15 @@ export default function GroceryList () {
 
         if (!checkedItems.includes(item)) {
             checkedItems.push(item);
-            item.quantity = 1;
-            preSubtotal += item.price * item.quantity; 
-            preTotal += (item.price + (item.price * item.taxRate)) * item.quantity;
+            item.qty = 1;
+            preSubtotal += item.price * item.qty; 
+            preTotal += (item.price + (item.price * item.taxRate)) * item.qty;
         }
         else if (checkedItems.includes(item)) {
             checkedItems.splice(checkedItems.indexOf(item), 1);
-            preSubtotal -= item.price * item.quantity; 
-            preTotal -= (item.price + (item.price * item.taxRate)) * item.quantity;
-            item.quantity = 0;
+            preSubtotal -= item.price * item.qty; 
+            preTotal -= (item.price + (item.price * item.taxRate)) * item.qty;
+            item.qty = 0;
         }
 
         setSelected(checkedItems);
@@ -70,17 +89,20 @@ export default function GroceryList () {
     return (
         <div>
             {groceryData.map((item, id) => {
+                
                 // Generates each grocery option based on array
                 return (
                     <ul key={id}>
                         <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                        <label><input id="itemCount" type="number" onChange={(e) => {item.quantity = e.target.value}} value={item.quantity} size={1}/> ${item.price} - {item.name}</label>
+                        <label><input id="itemCount" type="number" onChange={(e) => {item.qty = e.target.value}} value={item.qty} maxLength={3} size={2}/> ${item.price} - {item.name}</label>
+
+                        {/* <label htmlFor=""> {generateOptions()}</label> */}
                         
                     </ul>
                 );
             })}
             <div id="maxBudget">
-                <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} size={3}/></label>
+                <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3}/></label>
             </div>
         
             <h3>Subtotal: ${subtotal}</h3>
