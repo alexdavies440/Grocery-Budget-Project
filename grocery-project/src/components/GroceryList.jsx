@@ -8,7 +8,7 @@ export default function GroceryList () {
     const [subtotal, setSubtotal] = useState(0);
     const [total, setTotal] = useState(0);
     const [selected, setSelected] = useState([]);
-    const [quantity, setQuantity] = useState(0);
+    //const [quantity, setQuantity] = useState(0);
     const [budget, setBudget] = useState(150);
     let preSubtotal = subtotal;
     let preTotal = total;
@@ -20,7 +20,7 @@ export default function GroceryList () {
         handleOverBudget(preTotal);
     }
 
-    function overBudget(boolean) {
+    function isOverBudget(boolean) {
         if (boolean == true) {
             document.getElementById("maxBudget").style.fontWeight = "bold";
             document.getElementById("maxBudget").style.color = "red";
@@ -34,7 +34,7 @@ export default function GroceryList () {
     }
 
     function handleOverBudget(num) {
-        num > (budget)? overBudget(true) : overBudget(false);  
+        num > (budget)? isOverBudget(true) : isOverBudget(false);  
     }
 
     // Everything inside here happens when a box is checked
@@ -46,14 +46,14 @@ export default function GroceryList () {
         if (!checkedItems.includes(item)) {
             checkedItems.push(item);
             item.quantity = 1;
-            preSubtotal += item.price; 
-            preTotal += item.price + (item.price * item.taxRate);
+            preSubtotal += item.price * item.quantity; 
+            preTotal += (item.price + (item.price * item.taxRate)) * item.quantity;
         }
         else if (checkedItems.includes(item)) {
             checkedItems.splice(checkedItems.indexOf(item), 1);
+            preSubtotal -= item.price * item.quantity; 
+            preTotal -= (item.price + (item.price * item.taxRate)) * item.quantity;
             item.quantity = 0;
-            preSubtotal -= item.price; 
-            preTotal -= item.price + (item.price * item.taxRate);
         }
 
         setSelected(checkedItems);
@@ -74,7 +74,7 @@ export default function GroceryList () {
                 return (
                     <ul key={id}>
                         <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                        <label><input id="itemCount" type="number" onChange={(e) => {console.log(e.target.value)}} value={item.quantity} defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
+                        <label><input id="itemCount" type="number" onChange={(e) => {item.quantity = e.target.value}} value={item.quantity} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
                 );
