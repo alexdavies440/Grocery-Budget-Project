@@ -6,26 +6,36 @@ import { useId } from "react";
 export default function GroceryList () {
     
     const [subtotal, setSubtotal] = useState(0);
+    const [total, setTotal] = useState(0);
     const [selected, setSelected] = useState([]);
-    let sum = subtotal;
+    let preSubtotal = subtotal;
+    let preTotal = total;
 
     // Everything inside here happens when a box is checked
     function handleChange(i) {
+
         const checkedItems = selected;
+        const item = groceryData[i];
 
-
-        if (!checkedItems.includes(groceryData[i])) {
-            checkedItems.push(groceryData[i]);
-            sum += groceryData[i].price; 
+        if (!checkedItems.includes(item)) {
+            checkedItems.push(item);
+            preSubtotal += item.price; 
+            preTotal += item.price + (item.price * item.taxRate);
         }
-        else if (checkedItems.includes(groceryData[i])) {
-            checkedItems.splice(checkedItems.indexOf(groceryData[i]), 1);
-            sum -= groceryData[i].price; 
+        else if (checkedItems.includes(item)) {
+            checkedItems.splice(checkedItems.indexOf(item), 1);
+            preSubtotal -= item.price; 
+            preTotal -= item.price + (item.price * item.taxRate);
         }
 
         setSelected(checkedItems);
-        sum = Math.round(sum * 100)/100;
-        setSubtotal(sum);
+
+        preSubtotal = Math.round(preSubtotal * 100)/100;
+        preTotal = Math.round(preTotal * 100)/100;
+
+        setSubtotal(preSubtotal);
+        setTotal(preTotal);
+        
     }
     
     return (
@@ -40,19 +50,15 @@ export default function GroceryList () {
                     </ul>
                 );
             })}
-
-            <div id="subtotal">Subtotal: {subtotal}</div>
-       
-            {/* <div>Total: ${Math.round(total * 100)/100}</div> */}
-            
             <div>
-                
-            <label>
-                
-                Max Budget: $<input type="number" id="max" defaultValue={150} size={3}/>
-                
-            </label>
+                <button>Clear Items</button>
+                <label> Max Budget: $<input type="number" id="max" defaultValue={150} size={3}/></label>
             </div>
+            <br />
+            <div>Subtotal: ${subtotal}</div>
+            <div>Total: ${total}</div>
+            <br />
+
            </div>
            );
         }
