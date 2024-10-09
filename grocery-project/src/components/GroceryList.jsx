@@ -8,8 +8,17 @@ export default function GroceryList () {
     const [subtotal, setSubtotal] = useState(0);
     const [total, setTotal] = useState(0);
     const [selected, setSelected] = useState([]);
+    const [quantity, setQuantity] = useState(0);
+    const [budget, setBudget] = useState(150);
     let preSubtotal = subtotal;
     let preTotal = total;
+   
+
+
+    function handleBudget(event) {
+        setBudget(event.target.value);
+        handleOverBudget(preTotal);
+    }
 
     function overBudget(boolean) {
         if (boolean == true) {
@@ -25,9 +34,9 @@ export default function GroceryList () {
     }
 
     function handleOverBudget(num) {
-        const max = 150; // Will make this dynamic later
-        num > max? overBudget(true) : overBudget(false);
+        num > (budget)? overBudget(true) : overBudget(false);  
     }
+
     // Everything inside here happens when a box is checked
     function handleChange(i) {
 
@@ -50,15 +59,12 @@ export default function GroceryList () {
         preSubtotal = Math.round(preSubtotal * 100)/100;
         preTotal = Math.round(preTotal * 100)/100;
         
+        handleOverBudget(preTotal);
+
         setSubtotal(preSubtotal);
         setTotal(preTotal); 
-        
-        handleOverBudget(preTotal);
     }
 
-
-    
-     
     return (
         <div>
             {groceryData.map((item, id) => {
@@ -66,17 +72,18 @@ export default function GroceryList () {
                 return (
                     <ul key={id}>
                         <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                        <label><input name="itemCount" type="number" defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
+                        <label><input id="itemCount" type="number" onChange={(e) => {console.log(e.target.value)}} defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
                 );
             })}
             <div id="maxBudget">
-                <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => {m = e.target.value}} defaultValue={150} size={3}/></label>
+                <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} size={3}/></label>
             </div>
-            <br />
-            <div>Subtotal: ${subtotal}</div>
-            <div>Total: ${total}</div>
+        
+            <h3>Subtotal: ${subtotal}</h3>
+        
+            <h3>Total: ${total}</h3>
             <br />
 
            </div>

@@ -13,7 +13,7 @@ function App() {
     <div>
       <Banner />
       <GroceryList />
-      
+      // List can go here, or on right side of page?
     </div>
       
   );
