@@ -45,11 +45,13 @@ export default function GroceryList () {
 
         if (!checkedItems.includes(item)) {
             checkedItems.push(item);
+            item.quantity = 1;
             preSubtotal += item.price; 
             preTotal += item.price + (item.price * item.taxRate);
         }
         else if (checkedItems.includes(item)) {
             checkedItems.splice(checkedItems.indexOf(item), 1);
+            item.quantity = 0;
             preSubtotal -= item.price; 
             preTotal -= item.price + (item.price * item.taxRate);
         }
@@ -72,7 +74,7 @@ export default function GroceryList () {
                 return (
                     <ul key={id}>
                         <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                        <label><input id="itemCount" type="number" onChange={(e) => {console.log(e.target.value)}} defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
+                        <label><input id="itemCount" type="number" onChange={(e) => {console.log(e.target.value)}} value={item.quantity} defaultValue={0} size={1}/> ${item.price} - {item.name}</label>
                         
                     </ul>
                 );
