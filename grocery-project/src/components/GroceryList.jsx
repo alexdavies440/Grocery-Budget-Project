@@ -5,69 +5,28 @@ import { useId } from "react";
 
 export default function GroceryList () {
     
-    
-    const checkedItems = [];
-    const [subtotal, setSubtotal] = useState(getSubtotal(checkedItems));
+    const [subtotal, setSubtotal] = useState(0);
+    const [selected, setSelected] = useState([]);
+    let sum = subtotal;
 
-    // Anything not contained in array will be added when checked, 
-    //anything already in array will be removed when (un)checked
-    function selectItems(i) {
+    // Everything inside here happens when a box is checked
+    function handleChange(i) {
+        const checkedItems = selected;
+
+
         if (!checkedItems.includes(groceryData[i])) {
             checkedItems.push(groceryData[i]);
-            
+            sum += groceryData[i].price; 
         }
         else if (checkedItems.includes(groceryData[i])) {
             checkedItems.splice(checkedItems.indexOf(groceryData[i]), 1);
-            
+            sum -= groceryData[i].price; 
         }
-        return checkedItems;
-    }
 
-    // For now just sets everything that's checked to quantity of 1
-    function updateQuantity(arr) {
-        for (let i = 0; i < arr.length; i++) {
-            arr[i].quantity = 1;
-        }
-    }
-
-    // Goes through array of selected items and totals up price
-    function getSubtotal(arr) {
-        let sum = 0;
-        for (let i = 0; i < arr.length; i++) {
-            sum += arr[i].price * arr[i].quantity;
-        }
+        setSelected(checkedItems);
         sum = Math.round(sum * 100)/100;
-        // setSubtotal(sum);
-        return sum;
+        setSubtotal(sum);
     }
-
-    // Everything inside here happens when a box is checked
-    function handleChange(index) {
-    
-        // Select items
-        selectItems(index);
-
-        // Set quantity of each to 1
-        updateQuantity(checkedItems);
-        
-        // Print items
-        console.log(checkedItems);
-
-        // Print subtotal
-        console.log(getSubtotal(checkedItems))
-             
-        // const newSubtotal = getSubtotal(checkedItems);
-        // setSubtotal(subtotal => getSubtotal(checkedItems));
-
-        // setSubtotal((subtotal) => {
-        //    return getSubtotal(checkedItems);
-        // })
-
-    }
-    
-    // useEffect(() => {
-    //     console.log(subtotal);
-    //   }, [subtotal]);
     
     return (
         <div>
@@ -82,7 +41,7 @@ export default function GroceryList () {
                 );
             })}
 
-            <div id="subtotal">Subtotal: {getSubtotal(checkedItems)}</div>
+            <div id="subtotal">Subtotal: {subtotal}</div>
        
             {/* <div>Total: ${Math.round(total * 100)/100}</div> */}
             
