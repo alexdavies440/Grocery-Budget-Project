@@ -11,6 +11,23 @@ export default function GroceryList () {
     let preSubtotal = subtotal;
     let preTotal = total;
 
+    function overBudget(boolean) {
+        if (boolean == true) {
+            document.getElementById("maxBudget").style.fontWeight = "bold";
+            document.getElementById("maxBudget").style.color = "red";
+            document.getElementById("max").style.color = "red";
+        }
+        if (boolean == false) {
+            document.getElementById("maxBudget").style.fontWeight = "normal";
+            document.getElementById("maxBudget").style.color = "";
+            document.getElementById("max").style.color = "";
+        }
+    }
+
+    function handleOverBudget(num) {
+        const max = 150; // Will make this dynamic later
+        num > max? overBudget(true) : overBudget(false);
+    }
     // Everything inside here happens when a box is checked
     function handleChange(i) {
 
@@ -32,12 +49,16 @@ export default function GroceryList () {
 
         preSubtotal = Math.round(preSubtotal * 100)/100;
         preTotal = Math.round(preTotal * 100)/100;
-
-        setSubtotal(preSubtotal);
-        setTotal(preTotal);
         
+        setSubtotal(preSubtotal);
+        setTotal(preTotal); 
+        
+        handleOverBudget(preTotal);
     }
+
+
     
+     
     return (
         <div>
             {groceryData.map((item, id) => {
@@ -50,9 +71,8 @@ export default function GroceryList () {
                     </ul>
                 );
             })}
-            <div>
-                <button>Clear Items</button>
-                <label> Max Budget: $<input type="number" id="max" defaultValue={150} size={3}/></label>
+            <div id="maxBudget">
+                <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => {m = e.target.value}} defaultValue={150} size={3}/></label>
             </div>
             <br />
             <div>Subtotal: ${subtotal}</div>
