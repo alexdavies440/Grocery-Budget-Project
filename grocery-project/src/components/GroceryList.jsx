@@ -8,7 +8,7 @@ export default function GroceryList () {
     const [subtotal, setSubtotal] = useState(0);
     const [total, setTotal] = useState(0);
     const [selected, setSelected] = useState([]);
-    //const [quantity, setQuantity] = useState(0);
+    const [list, setList] = useState([]);
     const [budget, setBudget] = useState(150);
     let preSubtotal = subtotal;
     let preTotal = total;
@@ -88,14 +88,15 @@ export default function GroceryList () {
     }
 
     return (
-        <div>
+        <>
+        <div >
             {groceryData.map((item, id) => {
 
                 // Generates each grocery option based on array
                 return (
-                    <div>
+                    <div className="columns">
                         <ul key={id}>
-                            <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
+                            <label><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
                             <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label>
 
                             {/* <label htmlFor=""> {generateOptions()}</label> */}
@@ -103,6 +104,7 @@ export default function GroceryList () {
                     </div>
                 );
             })}
+            <div id="list" className="columns">List might go here</div>
             <div id="maxBudget">
                 <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3}/></label>
             </div>
@@ -113,5 +115,8 @@ export default function GroceryList () {
             <br />
 
            </div>
+           
+
+           </>
            );
         }
