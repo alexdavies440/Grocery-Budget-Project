@@ -56,6 +56,7 @@ export default function GroceryList () {
             
         );
     }
+
     // Everything inside here happens when a box is checked
     function handleChange(i) {
 
@@ -89,16 +90,17 @@ export default function GroceryList () {
     return (
         <div>
             {groceryData.map((item, id) => {
-                
+
                 // Generates each grocery option based on array
                 return (
-                    <ul key={id}>
-                        <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                        <label><input id="itemCount" type="number" onChange={(e) => {item.qty = e.target.value}} value={item.qty} maxLength={3} size={2}/> ${item.price} - {item.name}</label>
+                    <div>
+                        <ul key={id}>
+                            <label ><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
+                            <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label>
 
-                        {/* <label htmlFor=""> {generateOptions()}</label> */}
-                        
-                    </ul>
+                            {/* <label htmlFor=""> {generateOptions()}</label> */}
+                        </ul>
+                    </div>
                 );
             })}
             <div id="maxBudget">
