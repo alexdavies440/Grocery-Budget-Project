@@ -121,7 +121,7 @@ export default function GroceryList() {
                     
                 </div>
                 <div>
-                    <h3>Shopping Cart:</h3>
+                    <h3 >Shopping Cart:</h3>
                     {selected.map((selection, id) => {
                         return (
                             <div>
@@ -133,13 +133,14 @@ export default function GroceryList() {
                     })}
                 </div>
                 </div>
-                <div id="maxBudget">
+                <br />
+                <div id="maxBudget" className="totals">
                     <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3} /></label>
                 </div>
 
-                <h3 id="test">Subtotal: ${subtotal}</h3>
+                <h3 className="totals">Subtotal: ${subtotal}</h3>
 
-                <h3>Total: ${total}</h3>
+                <h3 className="totals">Total: ${total}</h3>
               
         </>
     );
