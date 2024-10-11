@@ -104,6 +104,7 @@ export default function GroceryList() {
         <>
             <div className="columns">
                 <div >
+                    <h3 id="instruction">Pick your groceries: </h3>
                     {groceryData.map((item, id) => {
 
                         // Generates each grocery option based on array
@@ -119,7 +120,8 @@ export default function GroceryList() {
                     })}
                     
                 </div>
-                <div>Shopping Cart:
+                <div>
+                    <h3>Shopping Cart:</h3>
                     {selected.map((selection, id) => {
                         return (
                             <div>
