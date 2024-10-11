@@ -110,7 +110,7 @@ export default function GroceryList() {
                         // Generates each grocery option based on array
                         return (
                             <div className="columns">
-                                <ul key={id}>
+                                <ul key={id} className="listItem">
                                     <label><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
                                     <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label>
                                     {/* <label htmlFor=""> {generateNumOptions()}</label> */}
