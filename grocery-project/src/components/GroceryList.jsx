@@ -8,7 +8,7 @@ export default function GroceryList() {
     const [subtotal, setSubtotal] = useState(0);
     const [total, setTotal] = useState(0);
     const [selected, setSelected] = useState([]);
-    const [list, setList] = useState([]);
+    //const [list, setList] = useState([]); may use to generate list as text file or email
     const [budget, setBudget] = useState(150);
     let preSubtotal = subtotal;
     let preTotal = total;
@@ -20,26 +20,38 @@ export default function GroceryList() {
 
     function isOverBudget(boolean) {
         if (boolean == true) {
-            document.getElementById("maxBudget").style.fontWeight = "bold";
+            
+            // Could be really annoying => window.alert("Total exceeds budget! Consider making more money")
+            document.getElementById("maxBudget").style.fontWeight = "bolder";
+            document.getElementById("maxBudget").style.fontWeight = "bolder";
             document.getElementById("maxBudget").style.color = "red";
             document.getElementById("max").style.color = "red";
         }
         if (boolean == false) {
-            document.getElementById("maxBudget").style.fontWeight = "normal";
+            document.getElementById("maxBudget").style.fontWeight = "bold";
+            document.getElementById("maxBudget").style.fontWeight = "bold";
             document.getElementById("maxBudget").style.color = "";
             document.getElementById("max").style.color = "";
         }
     }
 
     function handleOverBudget(num) {
-        num > (budget) ? isOverBudget(true) : isOverBudget(false);
+        num > budget ? isOverBudget(true) : isOverBudget(false);
     }
 
-    const updateCart = (selected) => {
-        
-    }
-    // May change number input to this instead
-    const generateOptions = () => {
+    // May change number input to this instead. Need to figure out why map function not working unless put inline
+    const generateNumOptions = () => {
+        // const count = [];
+        // for (let i = 0; i < 11; i++) {
+        //     count.push(i);
+        // }
+        // count.map((num, id) => {
+        //     return (
+        //         <select>
+        //             <option value={id}>{num}</option>
+        //         </select>
+        //     );
+        // })
         return (
             <select onChange={(e) => item.qty = (e.target.value)}>
                 <option id="0">0</option>
@@ -52,7 +64,7 @@ export default function GroceryList() {
                 <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
-                <option value="10">9</option>
+                <option value="10">10</option>
             </select>
 
         );
@@ -100,8 +112,7 @@ export default function GroceryList() {
                                 <ul key={id}>
                                     <label><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
                                     <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label>
-
-                                    {/* <label htmlFor=""> {generateOptions()}</label> */}
+                                    {/* <label htmlFor=""> {generateNumOptions()}</label> */}
                                 </ul>
                             </div>
                         );
@@ -124,14 +135,10 @@ export default function GroceryList() {
                     <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3} /></label>
                 </div>
 
-                <h3>Subtotal: ${subtotal}</h3>
+                <h3 id="test">Subtotal: ${subtotal}</h3>
 
                 <h3>Total: ${total}</h3>
-                <br />
-
-            
-
-
+              
         </>
     );
 }

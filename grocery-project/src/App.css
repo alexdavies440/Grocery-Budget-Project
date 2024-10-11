@@ -1,9 +1,11 @@
 body {
-  background-color: antiquewhite;
+  background-color: rgb(216, 237, 178);;
   font-family: sans-serif;
   font-size: 14px;
+  font-weight: bold;
   margin: 0;
   min-height: 100vh;
+  color:rgb(73, 112, 0);
 }
 
 h1, h3 {
@@ -17,8 +19,3 @@ h1, h3 {
   flex-grow: 1;
 }
 
-
-#list {
- 
-  
-}
