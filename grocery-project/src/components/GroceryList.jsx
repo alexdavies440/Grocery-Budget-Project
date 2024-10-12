@@ -21,7 +21,8 @@ export default function GroceryList() {
     function isOverBudget(boolean) {
         if (boolean == true) {
             
-            // Could be really annoying => window.alert("Total exceeds budget! Consider making more money")
+            // Could be really annoying => 
+            // window.alert("Total exceeds budget! Consider making more money")
             document.getElementById("maxBudget").style.fontWeight = "bolder";
             document.getElementById("maxBudget").style.fontWeight = "bolder";
             document.getElementById("maxBudget").style.color = "red";

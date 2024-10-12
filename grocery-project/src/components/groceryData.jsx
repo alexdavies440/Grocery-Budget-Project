@@ -38,7 +38,7 @@ const groceryData = [
     {id: 24, qty: 0, name: "Pork Spare Ribs", price: 7.16, category: "Meat", taxRate: bTaxable},
     {id: 25, qty: 0, name: "Ground Turkey", price: 8.79, category: "Meat", taxRate: bTaxable},
     {id: 26, qty: 0, name: "Hash Brown Patties", price: 4.95, category: "Freezer", taxRate: bTaxable},
-    //{"Frozen Peas", 1.05, "Freezer", bTaxable},
+    {id: 27, qty: 0, name: "Frozen Peas", price: 1.05, category: "Freezer", taxRate: bTaxable},
     //{"Frozen Corn", 1.05, "Freezer", bTaxable},
     //{"Frozen Mixed Vegetables", 1.05, "Freezer", bTaxable}
 ];
