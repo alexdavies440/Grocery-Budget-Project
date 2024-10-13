@@ -105,7 +105,7 @@ export default function GroceryList() {
         <>
             <div className="columns">
                 <div >
-                    <h3 id="instruction">Pick your groceries: </h3>
+                    <h3 id="instruction"  className="listHeader">Pick your groceries: </h3>
                     {groceryData.map((item, id) => {
 
                         // Generates each grocery option based on array
@@ -124,10 +124,10 @@ export default function GroceryList() {
                 <div>
     {/* >>>>Possibly incorporate subtotal and total into here above the list<<<<< */}
 
-                    <h3 >Shopping Cart:</h3> 
+                    <h3 className="listHeader">Shopping Cart:</h3> 
                     {selected.map((selection, id) => {
                         return (
-                            <div>
+                            <div id="cart">
                                 <ul>
                                     <li>{selection.name} x {selection.qty}</li>
                                 </ul>
@@ -139,9 +139,9 @@ export default function GroceryList() {
                 </div>
                 <br />
                 <div id="totalsSection">
-                    <div id="maxBudget" className="totals">
+                    <h3 id="maxBudget" className="totals">
                         <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3} /></label>
-                    </div>
+                    </h3>
 
                     <h3 className="totals">Subtotal: ${subtotal}</h3>
 
