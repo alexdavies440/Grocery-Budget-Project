@@ -41,7 +41,7 @@ export default function GroceryList() {
     }
 
     // May change number input to this instead. Need to figure out why map function not working unless put inline
-    const generateNumOptions = () => {
+    const generateNumOptions = (item) => {
         // const count = [];
         // for (let i = 0; i < 11; i++) {
         //     count.push(i);
@@ -54,8 +54,8 @@ export default function GroceryList() {
         //     );
         // })
         return (
-            <select onChange={(e) => item.qty = (e.target.value)}>
-                <option id="0">0</option>
+            <select onSelect={(e) => item.qty = (e.target.value)}>
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -114,7 +114,7 @@ export default function GroceryList() {
                                 <ul key={id} className="listItem">
                                     <label><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
                                     <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label>
-                                    {/* <label htmlFor=""> {generateNumOptions()}</label> */}
+                                    {/* <label id="itemCount"> {generateNumOptions(item)} ${item.price} - {item.name}</label> */}
                                 </ul>
                             </div>
                         );
