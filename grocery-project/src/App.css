@@ -14,7 +14,7 @@ body {
 #banner {
   background-image: url("assets/1000_F_416456157_gAC4vXCygslyIqtbFXOJAIgQEIXuq67M.jpg");
   box-shadow: 0 1px 10px #52392e;
-  color: #fcf6ed;
+  color: #ffffff;
   text-align: center;
   padding-left: 30px;
   padding-right: 30px;
@@ -39,8 +39,20 @@ body {
 }
 
 #secondColumn {
-  margin-left: 80px;
+  margin-left: 20%;
+  margin-right: 10%;
 }
+
+.plusMinus {
+  background-color: white;
+}
+
+/* input {
+  background-color: #b78352;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  border-style: hidden;
+} */
 
 .columns {
   display: flex;

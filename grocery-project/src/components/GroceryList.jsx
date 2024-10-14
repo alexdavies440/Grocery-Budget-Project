@@ -41,20 +41,12 @@ export default function GroceryList() {
     }
 
     // May change number input to this instead. Need to figure out why map function not working unless put inline
-    const generateNumOptions = (item) => {
-        // const count = [];
-        // for (let i = 0; i < 11; i++) {
-        //     count.push(i);
-        // }
-        // count.map((num, id) => {
-        //     return (
-        //         <select>
-        //             <option value={id}>{num}</option>
-        //         </select>
-        //     );
-        // })
+    const countSelector = (item) => {
+        
+        const [count, setCount] = useState(1);
+        item.qty = count;
         return (
-            <select onSelect={(e) => item.qty = (e.target.value)}>
+            <select onChange={(e) => {setCount(e.target.value)} }>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -79,7 +71,7 @@ export default function GroceryList() {
 
         if (!checkedItems.includes(item)) {
             checkedItems.push(item);
-            item.qty = 1;
+            
             preSubtotal += item.price * item.qty;
             preTotal += (item.price + (item.price * item.taxRate)) * item.qty;
         }
@@ -99,7 +91,7 @@ export default function GroceryList() {
 
         setSubtotal(preSubtotal);
         setTotal(preTotal);
-        return subtotal;
+        
     }
 
     return (
@@ -113,9 +105,10 @@ export default function GroceryList() {
                         return (
                             <div >
                                 <ul key={id} className="listItem">
-                                    <label><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                                    <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label>
-                                    {/* <label id="itemCount"> {generateNumOptions(item)} ${item.price} - {item.name}</label> */}
+                                    <label><input className="checkbox" type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
+                                    {/* <label><button>-</button> {item.qty} <button>+</button> ${item.price} - {item.name}</label> */}
+                                    {/* <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label> */}
+                                    <label id="itemCount"> {countSelector(item)} ${item.price} - {item.name}</label>
                                 </ul>
                             </div>
                         );
