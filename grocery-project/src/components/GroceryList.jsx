@@ -99,6 +99,7 @@ export default function GroceryList() {
 
         setSubtotal(preSubtotal);
         setTotal(preTotal);
+        return subtotal;
     }
 
     return (

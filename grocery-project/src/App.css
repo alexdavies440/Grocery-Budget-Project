@@ -1,19 +1,19 @@
 body {
-  /* background-image: linear-gradient(#BFD7EA,#91AEC1); */
-  background-color: #e6ffee;
-  background-color: #fcf6ed;
+  background-color: #924c2e;
+  /* background-color: #fcf6ed; */
   font-family: sans-serif;
   font-size: 14px;
   font-weight: bold;
   margin: 0;
   min-height: 100vh;
-  color: #a35311;
-  color: #16913d;
-  text-shadow: 0 0 0;
+  color: #ffffff;
+  /* color: #16913d; */
+  
 }
 
 #banner {
   background-image: url("assets/1000_F_416456157_gAC4vXCygslyIqtbFXOJAIgQEIXuq67M.jpg");
+  box-shadow: 0 1px 10px #52392e;
   color: #fcf6ed;
   text-align: center;
   padding-left: 30px;
