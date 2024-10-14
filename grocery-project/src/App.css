@@ -1,5 +1,5 @@
 body {
-  background-color: #924c2e;
+  background-color: #8f5f32;
   /* background-color: #fcf6ed; */
   font-family: sans-serif;
   font-size: 14px;
@@ -38,8 +38,8 @@ body {
   margin-left: 45px;
 }
 
-#cart {
-  
+#secondColumn {
+  margin-left: 80px;
 }
 
 .columns {
@@ -48,10 +48,6 @@ body {
   margin-right: 60px;
 }
 
-.totals {
-  margin-left: 45px;
-  
-}
 
 .listItem {
   

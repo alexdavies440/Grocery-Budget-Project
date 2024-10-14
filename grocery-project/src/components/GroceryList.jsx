@@ -111,7 +111,7 @@ export default function GroceryList() {
 
                         // Generates each grocery option based on array
                         return (
-                            <div className="columns">
+                            <div >
                                 <ul key={id} className="listItem">
                                     <label><input type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
                                     <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label>
@@ -122,13 +122,21 @@ export default function GroceryList() {
                     })}
                     
                 </div>
+                <div id="secondColumn">
                 <div>
-    {/* >>>>Possibly incorporate subtotal and total into here above the list<<<<< */}
+                    <h3 id="maxBudget" className="totals">
+                        <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3} /></label>
+                    </h3>
 
+                    <h3 className="totals">Subtotal: ${subtotal}</h3>
+
+                    <h3 className="totals">Total: ${total}</h3>
+                </div>
+                <br />
                     <h3 className="listHeader">Shopping Cart:</h3> 
                     {selected.map((selection, id) => {
                         return (
-                            <div id="cart">
+                            <div >
                                 <ul>
                                     <li>{selection.name} x {selection.qty}</li>
                                 </ul>
@@ -139,15 +147,7 @@ export default function GroceryList() {
                 
                 </div>
                 <br />
-                <div id="totalsSection">
-                    <h3 id="maxBudget" className="totals">
-                        <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3} /></label>
-                    </h3>
-
-                    <h3 className="totals">Subtotal: ${subtotal}</h3>
-
-                    <h3 className="totals">Total: ${total}</h3>
-                </div>
+                
               
         </>
     );

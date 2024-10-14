@@ -5,7 +5,7 @@ import './App.css';
 import Banner from './components/Banner';
 import GroceryList from './components/GroceryList';
 import groceryData from './components/groceryData';
-import Ledger from './components/Ledger';
+
 
 function App() {
   
