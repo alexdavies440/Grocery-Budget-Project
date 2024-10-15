@@ -40,14 +40,13 @@ export default function GroceryList() {
         num > budget ? isOverBudget(true) : isOverBudget(false);
     }
 
-    // May change number input to this instead. Need to figure out why map function not working unless put inline
+    
     const countSelector = (item) => {
         
         const [count, setCount] = useState(1);
         item.qty = count;
         return (
-            <select onChange={(e) => {setCount(e.target.value)} }>
-                <option value="0">0</option>
+            <select onChange={(e) => {setCount(e.target.value)}}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -63,11 +62,21 @@ export default function GroceryList() {
         );
     }
 
+    // This prototype works for updating the total when the count is updated!
+    const testTotal = (arr) => {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i].price * arr[i].qty;
+        }
+        return sum;
+    }
+
     // Everything inside here happens when a box is checked
     function handleChange(i) {
 
         const checkedItems = selected;
         const item = groceryData[i];
+        
 
         if (!checkedItems.includes(item)) {
             checkedItems.push(item);
@@ -91,6 +100,7 @@ export default function GroceryList() {
 
         setSubtotal(preSubtotal);
         setTotal(preTotal);
+
         
     }
 
@@ -124,6 +134,7 @@ export default function GroceryList() {
                     <h3 className="totals">Subtotal: ${subtotal}</h3>
 
                     <h3 className="totals">Total: ${total}</h3>
+                    <h3>Test: {testTotal(selected)}</h3>
                 </div>
                 <br />
                     <h3 className="listHeader">Shopping Cart:</h3> 
