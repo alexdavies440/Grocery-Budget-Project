@@ -1,6 +1,6 @@
 body {
-  /* background-image: url("assets/1000_F_407827530_LA8SfeCX8Z25dZYqCA65RQIQ8rJlpIh0.jpg"); */
-  background-color: #8f5f32;
+  background-image: linear-gradient(#8f5f32, #492809);
+  /* background-color: #8f5f32; */
   /* background-color: #fcf6ed; */
   font-family: sans-serif;
   font-size: 14px;
@@ -8,10 +8,6 @@ body {
   margin: 0;
   min-height: 100vh;
   color: #ffffff;
-  
-  backdrop-filter: blur(5px);
-  
-  /* color: #16913d; */
   
 }
 
