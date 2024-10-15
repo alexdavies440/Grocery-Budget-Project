@@ -1,4 +1,5 @@
 body {
+  /* background-image: url("assets/1000_F_407827530_LA8SfeCX8Z25dZYqCA65RQIQ8rJlpIh0.jpg"); */
   background-color: #8f5f32;
   /* background-color: #fcf6ed; */
   font-family: sans-serif;
@@ -7,6 +8,9 @@ body {
   margin: 0;
   min-height: 100vh;
   color: #ffffff;
+  
+  backdrop-filter: blur(5px);
+  
   /* color: #16913d; */
   
 }
@@ -20,6 +24,13 @@ body {
   padding-right: 30px;
   padding-top: 1px;
   padding-bottom: 8px;
+  
+}
+
+.desc {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  padding: 15px;
 }
 
 .listHeader {
@@ -43,9 +54,6 @@ body {
   margin-right: 10%;
 }
 
-.plusMinus {
-  background-color: white;
-}
 
 /* input {
   background-color: #b78352;
@@ -58,6 +66,8 @@ body {
   display: flex;
   flex-grow: 1;
   margin-right: 60px;
+  flex-wrap: nowrap;
+  
 }
 
 .checkbox {

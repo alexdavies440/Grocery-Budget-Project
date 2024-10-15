@@ -9,41 +9,14 @@ export default function GroceryList() {
     const [total, setTotal] = useState(0);
     const [selected, setSelected] = useState([]);
     //const [list, setList] = useState([]); may use to generate list as text file or email
-    const [budget, setBudget] = useState(150);
-    // let preSubtotal = subtotal;
-    // let preTotal = total;
-
-    function handleBudget(event) {
-        setBudget(event.target.value);
-        handleOverBudget(preTotal);
-    }
-
-    function isOverBudget(boolean) {
-        if (boolean == true) {
-            
-            // This no longer works, may consider removing it anyway
-            document.getElementById("maxBudget").style.fontWeight = "bolder";
-            document.getElementById("maxBudget").style.fontWeight = "bolder";
-            document.getElementById("maxBudget").style.color = "red";
-            document.getElementById("max").style.color = "red";
-        }
-        if (boolean == false) {
-            document.getElementById("maxBudget").style.fontWeight = "bold";
-            document.getElementById("maxBudget").style.fontWeight = "bold";
-            document.getElementById("maxBudget").style.color = "";
-            document.getElementById("max").style.color = "";
-        }
-    }
-
-    function handleOverBudget(num) {
-        num > budget ? isOverBudget(true) : isOverBudget(false);
-    }
-
+    
     
     const countSelector = (item) => {
         
         const [count, setCount] = useState(1);
         item.qty = count;
+
+        
         return (
             <select onChange={(e) => {setCount(e.target.value)}}>
                 <option value="1">1</option>
@@ -61,7 +34,6 @@ export default function GroceryList() {
         );
     }
 
-    // This prototype works for updating the total when the count is updated!
     const calculateSubtotal = (arr) => {
         let sum = 0;
         for (let i = 0; i < arr.length; i++) {
@@ -89,27 +61,16 @@ export default function GroceryList() {
         
         if (!checkedItems.includes(item)) {
             checkedItems.push(item);
-            // preSubtotal += item.price * item.qty;
-            // preTotal += (item.price + (item.price * item.taxRate)) * item.qty;
         }
         else if (checkedItems.includes(item)) {
             checkedItems.splice(checkedItems.indexOf(item), 1);
-            // preSubtotal -= item.price * item.qty;
-            // preTotal -= (item.price + (item.price * item.taxRate)) * item.qty;
-            // item.qty = 0;
         }
 
+        //I don't end up using this setter, but not having the selected state variable breaks the program for some reason...
         // setSelected(checkedItems);
-        
-        // preSubtotal = Math.round(preSubtotal * 100) / 100;
-        // preTotal = Math.round(preTotal * 100) / 100;
-
-        // handleOverBudget(preTotal);
-
+       
         setSubtotal(calculateSubtotal(checkedItems));
         setTotal(calculateTotal(checkedItems));
-
-        
     }
 
     return (
@@ -132,14 +93,9 @@ export default function GroceryList() {
                 </div>
                 <div id="secondColumn">
                 <div>
-                    <h3 id="maxBudget" className="totals">
-                        <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3} /></label>
-                    </h3>
-
                     <h3 className="totals">Subtotal: ${calculateSubtotal(selected)}</h3>
 
                     <h3 className="totals">Total: ${calculateTotal(selected)}</h3>
-                    
                 </div>
                 <br />
                     <h3 className="listHeader">Shopping Cart:</h3> 

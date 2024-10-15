@@ -1,11 +1,11 @@
-// class groceryItem {
-//     constructor(id, name, price, category, taxRate) {
-//         this.name = name;
-//         this.price = price;
-//         this.category = category;
-//         this.taxRate = taxRate;
-//     }
-// }
+class GroceryItem {
+    constructor(id, name, price, category, taxRate) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.taxRate = taxRate;
+    }
+}
 
 const bTaxable = 6.391/100; // Food items taxed at lower rate
 const cTaxable = 9.679/100; // Non food items subject to regular sales tax
@@ -39,8 +39,10 @@ const groceryData = [
     {id: 25, qty: 0, name: "Ground Turkey", price: 8.79, category: "Meat", taxRate: bTaxable},
     {id: 26, qty: 0, name: "Hash Brown Patties", price: 4.95, category: "Freezer", taxRate: bTaxable},
     {id: 27, qty: 0, name: "Frozen Peas", price: 1.05, category: "Freezer", taxRate: bTaxable},
-    //{"Frozen Corn", 1.05, "Freezer", bTaxable},
-    //{"Frozen Mixed Vegetables", 1.05, "Freezer", bTaxable}
+    {id: 28, qty: 0, name: "Frozen Corn", price: 1.05, category: "Freezer", taxRate: bTaxable},
+    {id: 29, qty: 0, name: "Frozen Mixed Vegetables", price: 1.05, category: "Freezer", taxRate: bTaxable},
+    {id: 30, qty: 0, name: "Dry Dog Food", price: 13.79, category: "Misc", taxRate: cTaxable},
+    {id: 31, qty: 0, name: "Canned Cat Food", price: 0.57, category: "Misc", taxRate: cTaxable}
 ];
 
 export default groceryData;
