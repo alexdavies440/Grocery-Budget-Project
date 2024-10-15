@@ -63,12 +63,23 @@ export default function GroceryList() {
     }
 
     // This prototype works for updating the total when the count is updated!
-    const testTotal = (arr) => {
+    const calculateSubtotal = (arr) => {
         let sum = 0;
         for (let i = 0; i < arr.length; i++) {
             sum += arr[i].price * arr[i].qty;
         }
-        return sum;
+        return Math.round(sum * 100)/100;
+    }
+
+    const calculateTotal = (arr) => {
+        let sum = 0;
+        
+        for (let i = 0; i < arr.length; i++) {
+            let sub = arr[i].price * arr[i].qty;
+            let tax = subtotal * arr[i].taxRate;
+            sum += sub + tax;
+        }
+        return Math.round(sum * 100)/100;
     }
 
     // Everything inside here happens when a box is checked
@@ -131,10 +142,10 @@ export default function GroceryList() {
                         <label>Max Budget: $<input type="number" id="max" name="maxVal" onChange={(e) => handleBudget(e)} defaultValue={150} maxLength={4} size={3} /></label>
                     </h3>
 
-                    <h3 className="totals">Subtotal: ${subtotal}</h3>
+                    <h3 className="totals">Subtotal: ${calculateSubtotal(selected)}</h3>
 
-                    <h3 className="totals">Total: ${total}</h3>
-                    <h3>Test: {testTotal(selected)}</h3>
+                    <h3 className="totals">Total: ${calculateTotal(selected)}</h3>
+                    
                 </div>
                 <br />
                     <h3 className="listHeader">Shopping Cart:</h3> 
