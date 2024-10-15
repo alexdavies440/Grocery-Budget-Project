@@ -60,8 +60,12 @@ body {
   margin-right: 60px;
 }
 
+.checkbox {
+  height: 17px;
+  width: 17px;
+}
 
-.listItem {
-  
+.checkbox:checked {
+  box-shadow: 0 0 5px rgb(121, 255, 204);
 }
 

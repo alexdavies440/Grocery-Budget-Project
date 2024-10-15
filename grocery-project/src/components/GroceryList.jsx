@@ -10,8 +10,8 @@ export default function GroceryList() {
     const [selected, setSelected] = useState([]);
     //const [list, setList] = useState([]); may use to generate list as text file or email
     const [budget, setBudget] = useState(150);
-    let preSubtotal = subtotal;
-    let preTotal = total;
+    // let preSubtotal = subtotal;
+    // let preTotal = total;
 
     function handleBudget(event) {
         setBudget(event.target.value);
@@ -21,8 +21,7 @@ export default function GroceryList() {
     function isOverBudget(boolean) {
         if (boolean == true) {
             
-            // Could be really annoying => 
-            // window.alert("Total exceeds budget! Consider making more money")
+            // This no longer works, may consider removing it anyway
             document.getElementById("maxBudget").style.fontWeight = "bolder";
             document.getElementById("maxBudget").style.fontWeight = "bolder";
             document.getElementById("maxBudget").style.color = "red";
@@ -68,7 +67,7 @@ export default function GroceryList() {
         for (let i = 0; i < arr.length; i++) {
             sum += arr[i].price * arr[i].qty;
         }
-        return sum;
+        
         return Math.round(sum * 100)/100;
     }
 
@@ -78,39 +77,37 @@ export default function GroceryList() {
         for (let i = 0; i < arr.length; i++) {
             sum += ((arr[i].price + (arr[i].price * arr[i].taxRate)) * arr[i].qty);
         }
-        return sum;
+        
         return Math.round(sum * 100)/100;
     }
 
     // Everything inside here happens when a box is checked
     function handleChange(i) {
-
+       
         const checkedItems = selected;
         const item = groceryData[i];
         
-
         if (!checkedItems.includes(item)) {
             checkedItems.push(item);
-            
-            preSubtotal += item.price * item.qty;
-            preTotal += (item.price + (item.price * item.taxRate)) * item.qty;
+            // preSubtotal += item.price * item.qty;
+            // preTotal += (item.price + (item.price * item.taxRate)) * item.qty;
         }
         else if (checkedItems.includes(item)) {
             checkedItems.splice(checkedItems.indexOf(item), 1);
-            preSubtotal -= item.price * item.qty;
-            preTotal -= (item.price + (item.price * item.taxRate)) * item.qty;
-            item.qty = 0;
+            // preSubtotal -= item.price * item.qty;
+            // preTotal -= (item.price + (item.price * item.taxRate)) * item.qty;
+            // item.qty = 0;
         }
 
-        setSelected(checkedItems);
+        // setSelected(checkedItems);
+        
+        // preSubtotal = Math.round(preSubtotal * 100) / 100;
+        // preTotal = Math.round(preTotal * 100) / 100;
 
-        preSubtotal = Math.round(preSubtotal * 100) / 100;
-        preTotal = Math.round(preTotal * 100) / 100;
+        // handleOverBudget(preTotal);
 
-        handleOverBudget(preTotal);
-
-        setSubtotal(preSubtotal);
-        setTotal(preTotal);
+        setSubtotal(calculateSubtotal(checkedItems));
+        setTotal(calculateTotal(checkedItems));
 
         
     }
@@ -122,13 +119,10 @@ export default function GroceryList() {
                     <h3 id="instruction"  className="listHeader">Pick your groceries: </h3>
                     {groceryData.map((item, id) => {
 
-                        // Generates each grocery option based on array
                         return (
                             <div >
                                 <ul key={id} className="listItem">
                                     <label><input className="checkbox" type="checkbox" onChange={() => handleChange(id)} id={id} /></label>
-                                    {/* <label><button>-</button> {item.qty} <button>+</button> ${item.price} - {item.name}</label> */}
-                                    {/* <label><input id="itemCount" type="number" onChange={(e) => { item.qty = e.target.value }} value={item.qty} maxLength={3} size={2} /> ${item.price} - {item.name}</label> */}
                                     <label id="itemCount"> {countSelector(item)} ${item.price} - {item.name}</label>
                                 </ul>
                             </div>
