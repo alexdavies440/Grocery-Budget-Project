@@ -68,17 +68,17 @@ export default function GroceryList() {
         for (let i = 0; i < arr.length; i++) {
             sum += arr[i].price * arr[i].qty;
         }
+        return sum;
         return Math.round(sum * 100)/100;
     }
 
     const calculateTotal = (arr) => {
         let sum = 0;
-        
+    
         for (let i = 0; i < arr.length; i++) {
-            let sub = arr[i].price * arr[i].qty;
-            let tax = subtotal * arr[i].taxRate;
-            sum += sub + tax;
+            sum += ((arr[i].price + (arr[i].price * arr[i].taxRate)) * arr[i].qty);
         }
+        return sum;
         return Math.round(sum * 100)/100;
     }
 
