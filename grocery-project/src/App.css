@@ -74,6 +74,6 @@ body {
 }
 
 .checkbox:checked {
-  box-shadow: 0 0 5px rgb(121, 255, 204);
+  box-shadow: 0 0 5px rgb(117, 166, 145);
 }
 
