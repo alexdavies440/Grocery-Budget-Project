@@ -76,7 +76,7 @@ export default function GroceryList() {
     return (
         <>
             <div className="columns">
-                <div >
+                <div id="list">
                     <h3 id="instruction"  className="listHeader">Pick your groceries: </h3>
                     {groceryData.map((item, id) => {
 
@@ -98,7 +98,7 @@ export default function GroceryList() {
                     <h3 className="totals">Total: ${calculateTotal(selected)}</h3>
                 </div>
                 <br />
-                    <h3 className="listHeader">Shopping Cart:</h3> 
+                    <h2 className="listHeader">Shopping Cart:</h2> 
                     {selected.map((selection, id) => {
                         return (
                             <div >

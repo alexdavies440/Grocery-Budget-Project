@@ -8,13 +8,14 @@ body {
   margin: 0;
   min-height: 100vh;
   color: #ffffff;
-  
+  text-shadow: 0 0 3px #422407;
 }
 
 #banner {
   background-image: url("assets/1000_F_416456157_gAC4vXCygslyIqtbFXOJAIgQEIXuq67M.jpg");
   box-shadow: 0 1px 10px #52392e;
   color: #ffffff;
+  text-shadow: 0 0 3px #422407;
   text-align: center;
   padding-left: 30px;
   padding-right: 30px;
@@ -23,11 +24,12 @@ body {
   
 }
 
-.desc {
-  background-color: rgba(255, 255, 255, 0.4);
+#list {
+  /* background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
-  padding: 15px;
+  padding: 15px; */
 }
+
 
 .listHeader {
   
